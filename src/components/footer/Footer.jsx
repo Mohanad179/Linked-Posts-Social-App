@@ -1,4 +1,8 @@
-import { Footer, FooterCopyright, FooterLinkGroup, FooterLink } from "flowbite-react";
+import { Footer, FooterCopyright, FooterLinkGroup, FooterIcon } from "flowbite-react";
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedinIn } from "react-icons/fa";
+import { AiFillInstagram } from "react-icons/ai";
+import { SiGmail } from "react-icons/si";
 
 export default function FooterComponent() {
   return (
@@ -20,11 +24,11 @@ export default function FooterComponent() {
         </div>
 
         {/* Right side: Links */}
-        <FooterLinkGroup>
-          <FooterLink href="#">About</FooterLink>
-          <FooterLink href="#">Privacy Policy</FooterLink>
-          <FooterLink href="#">Licensing</FooterLink>
-          <FooterLink href="#">Contact</FooterLink>
+        <FooterLinkGroup className="gap-3">
+          <FooterIcon href="https://github.com/Mohanad179" icon={FaGithub} />
+          <FooterIcon href="https://linkedin.com/in/mohanad-abdelghafar" icon={FaLinkedinIn} />
+          <FooterIcon href="https://www.instagram.com/mohanad.mohameddd/" icon={AiFillInstagram} />
+          <FooterIcon href="mailto:mohanad.moh179@gmail.com" icon={SiGmail} />
         </FooterLinkGroup>
       </div>
     </Footer>

@@ -1,17 +1,24 @@
-import { useContext, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import axios from "axios";
 import { Spinner } from "@heroui/react";
 import { formatDistanceToNowStrict } from "date-fns";
 import UserProfileModal from "../userProfile/UserProfile";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import ErrorPage from "../errorPage/ErrorPage";
-import { authContext } from "../authContext/AuthContext";
 import toast from "react-hot-toast";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import { useProfile } from "../../hooks/useProfile";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Button,
+} from "@heroui/react";
 
-export default function CommentSection({ postId }) {
-  const { token } = useContext(authContext);
+export default function CommentSection({ postId, token }) {
+  const { data: user } = useProfile(token);
   let [selectedUserId, setSelectedUserId] = useState(null);
   const commentInput = useRef(null); // commentInput is an object, commentInput.current is the input you assigned using the (ref) hook
   const queryClient = useQueryClient();
@@ -147,14 +154,28 @@ export default function CommentSection({ postId }) {
           />
           <div className="flex flex-col flex-1">
             <div className="bg-gray-100 dark:bg-gray-700 rounded-2xl px-3 py-2 w-full relative">
-              <FontAwesomeIcon
-                onClick={() => {
-                  deleteComment(comment?._id);
-                }}
-                className="absolute top-2 right-5 cursor-pointer hover:scale-110 text-red-600"
-                icon={faTrash}
-                size="sm"
-              />
+              {comment?.commentCreator?._id === user?._id ? (
+                <div className="absolute right-5">
+                  <Dropdown size="sm">
+                    <DropdownTrigger>
+                      <Button variant="bordered">
+                        <FontAwesomeIcon icon={faEllipsis}/>
+                      </Button>
+                    </DropdownTrigger>
+                    <DropdownMenu aria-label="Static Actions">
+                      <DropdownItem key="edit">Edit Comment</DropdownItem>
+                      <DropdownItem
+                        onClick={() => deleteComment(comment?._id)}
+                        key="delete"
+                        className="text-danger"
+                        color="danger"
+                      >
+                        Delete Comment
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
+                </div>
+              ) : null}
               <span className="font-semibold text-sm block text-black dark:text-gray-300">
                 {comment.commentCreator.name}
               </span>

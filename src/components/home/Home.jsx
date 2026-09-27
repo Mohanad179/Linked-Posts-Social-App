@@ -15,37 +15,6 @@ import { Helmet } from "react-helmet-async";
 export default function Home() {
   const { token } = useContext(authContext);
   const queryClient = useQueryClient();
-  // const [posts, setPosts] = useState([])
-  // const [isLoading, setisLoading] = useState(false)
-
-  // useEffect(() => {
-  //   async function getAllPosts() {
-  //     try {
-  //       setisLoading(true)
-  //       const {data} = await axios.get("https://route-posts.routemisr.com/posts", {
-  //       headers: {token}
-  //     })
-
-  //     let postContent = data.data.posts
-  //     console.log( "PostContent" ,postContent)
-  //     setPosts(postContent)
-  //     } catch (error) {
-  //       console.log(error)
-  //     }finally{
-  //       setisLoading(false)
-  //     }
-  //   }
-
-  //   getAllPosts()
-  // }, [token])
-
-  // if(isLoading){
-  //   return (
-  //     <div className='flex h-screen justify-center items-center'>
-  //       <Spinner size='lg'/>
-  //     </div>
-  //   )
-  // }
 
   async function getAllPosts() {
     return axios.get("https://route-posts.routemisr.com/posts", {

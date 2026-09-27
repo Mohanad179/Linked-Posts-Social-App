@@ -21,26 +21,6 @@ export default function CreatePost({ token }) {
   const [imageURL, setImageURL] = useState(null);
   const queryClient = useQueryClient();
 
-  // async function createPost(){
-  //     console.log( "Post body value:" ,postBodyInput.current.value)
-  //     console.log( "Post Image value:" ,imageInput.current.files)
-
-  //     const formData = new FormData()
-
-  //     if(postBodyInput.current.value) {
-  //         formData.append('body', postBodyInput.current.value)
-  //     }
-
-  //     if(imageInput.current.files) {
-  //         formData.append('image', imageInput.current.files[0])
-  //     }
-
-  //     const { data } = await axios.post("https://route-posts.routemisr.com/posts", formData,
-  //         { headers: { token } }
-  //     )
-
-  //     console.log(data)
-  // }
 
   async function createPost() {
     const formData = new FormData();
@@ -58,9 +38,8 @@ export default function CreatePost({ token }) {
 
   const { mutate, isPending } = useMutation({
     mutationFn: createPost,
-    onSuccess: (response) => {
+    onSuccess: () => {
       // body is response.data.data.post.body
-      console.log(response.data);
       queryClient.invalidateQueries({ queryKey: ["posts"] });
 
       onOpenChange(false);
@@ -69,8 +48,7 @@ export default function CreatePost({ token }) {
 
       toast.success("Post Created Successfully!");
     },
-    onError: (error) => {
-      console.log(error.response?.data);
+    onError: () => {
       toast.error("Post Not Created!!");
     },
   });
@@ -78,10 +56,8 @@ export default function CreatePost({ token }) {
   // when the user uploads an image to the post, without even posting yet, preview this image
   function handleImagePreview() {
     const imageFile = imageInput.current.files[0]; // get the image file from it's reference
-    console.log("Image File", imageFile);
 
     const imagePath = URL.createObjectURL(imageFile);
-    console.log(imagePath);
 
     setImageURL(imagePath);
   }
