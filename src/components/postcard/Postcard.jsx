@@ -26,10 +26,6 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 
-
-// Read-only preview of the original post, embedded inside a share.
-// Deliberately NOT recursive: even if the API ever nests sharedPost.sharedPost,
-// we only ever render one level to avoid runaway nesting on the feed.
 function SharedPostPreview({ sharedPost }) {
   if (!sharedPost) {
     // Original was deleted or unavailable — don't crash the outer card.
@@ -152,8 +148,6 @@ export default function Postcard({
  })
 
 
- // Sharing is a one-way action (no "unshare"), so this is a plain
- // pending-disabled mutation — no optimistic state to roll back.
  const { mutate: sharePost, isPending: isSharePending } = useMutation({
     mutationFn: (body) =>
       axios.post(

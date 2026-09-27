@@ -20,8 +20,6 @@ import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
 import UserProfileModal from "../userProfile/UserProfile";
 
-// Single row for a following/followers list — same visual language as the
-// user-info block in the feed's PostCard (avatar + name + @username).
 function UserListRow({ u, onSelectUser }) {
   return (
     <div className="flex items-center gap-3">
@@ -41,10 +39,6 @@ function UserListRow({ u, onSelectUser }) {
   );
 }
 
-// Fetches full user objects for a list of ids by hitting the single-user
-// endpoint once per id (there's no batch endpoint). Fine at "following list"
-// scale; would need a real batch endpoint if this ever needs to handle
-// hundreds of ids.
 function useUserList(ids, token, enabled) {
   return useQuery({
     queryKey: ["userList", ids],

@@ -115,7 +115,6 @@ export default function CommentSection({ postId, token }) {
 
   return (
     <>
-      {/* <div className='flex justify-center items-center'>{comments === null && <Spinner/>}</div> */}
       {comments?.length == 0 && (
         <p className="text-sm text-gray-800 dark:text-gray-200 font-semibold py-3 mx-auto">
           No Comments Yet..
