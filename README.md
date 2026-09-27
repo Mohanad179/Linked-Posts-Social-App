@@ -3,6 +3,7 @@
 A LinkedIn-style social feed app built with React — users can create posts, comment, like, and manage their profile, with a fully responsive UI and dark mode support.
 
 **Live Demo:** [https://linked-posts-social-app-one.vercel.app/]
+
 **Repository:** [https://github.com/Mohanad179/Linked-Posts-Social-App]
 
 ---
