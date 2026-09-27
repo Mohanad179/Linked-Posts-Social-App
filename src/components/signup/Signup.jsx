@@ -91,7 +91,7 @@ export default function Signup() {
 
   return (
     <>
-      <div className='container max-w-sm p-6 mt-7 mx-auto rounded-xl bg-white dark:bg-gray-800 shadow-2xl'>
+      <div className='container max-w-sm p-6 my-7 mx-auto rounded-xl bg-white dark:bg-gray-800 shadow-2xl'>
         <h1 className='font-bold text-2xl text-center mb-4'>Sign Up</h1>
 
         { errorMsg && <p className='bg-red-500 text-white text-center font-semibold p-3 my-0.5 rounded-sm text-lg'>{errorMsg}</p> }

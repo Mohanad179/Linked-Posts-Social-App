@@ -7,6 +7,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import ErrorPage from "../errorPage/ErrorPage";
 import { authContext } from "../authContext/AuthContext";
 import toast from "react-hot-toast";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function CommentSection({ postId }) {
   const { token } = useContext(authContext);
@@ -14,15 +16,7 @@ export default function CommentSection({ postId }) {
   const commentInput = useRef(null); // commentInput is an object, commentInput.current is the input you assigned using the (ref) hook
   const queryClient = useQueryClient();
 
-  // async function createComment(){
-
-  //     return axios.post(`https://route-posts.routemisr.com/posts/${postId}/comments`,
-  //         { content: commentInput.current.value },
-  //         { headers: {token} }
-  //     )
-
-  // }
-
+  // create comment mutation fn
   const { isPending, mutate } = useMutation({
     mutationFn: () => {
       return axios.post(
@@ -47,6 +41,21 @@ export default function CommentSection({ postId }) {
     onError: (error) => {
       console.log("Error!", error);
       toast.error("Error Creating Comment!!");
+    },
+  });
+
+  const { mutate: deleteComment } = useMutation({
+    mutationFn: (commentId) => {
+      return axios.delete(
+        `https://route-posts.routemisr.com/posts/${postId}/comments/${commentId}`,
+        { headers: { token } },
+      );
+    },
+    onSuccess: () => toast.success("Comment Deleted!", { duration: 800 }),
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["comments", postId] });
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+      queryClient.invalidateQueries({ queryKey: ["postData", postId] });
     },
   });
 
@@ -136,8 +145,16 @@ export default function CommentSection({ postId }) {
             className="w-9 h-9 rounded-full object-cover shrink-0 cursor-pointer dark:border-2 dark:border-gray-300"
             onClick={() => setSelectedUserId(comment.commentCreator._id)}
           />
-          <div className="flex flex-col ">
-            <div className="bg-gray-100 dark:bg-gray-700 rounded-2xl px-3 py-2 w-fit max-w-full relative">
+          <div className="flex flex-col flex-1">
+            <div className="bg-gray-100 dark:bg-gray-700 rounded-2xl px-3 py-2 w-full relative">
+              <FontAwesomeIcon
+                onClick={() => {
+                  deleteComment(comment?._id);
+                }}
+                className="absolute top-2 right-5 cursor-pointer hover:scale-110 text-red-600"
+                icon={faTrash}
+                size="sm"
+              />
               <span className="font-semibold text-sm block text-black dark:text-gray-300">
                 {comment.commentCreator.name}
               </span>

@@ -175,7 +175,6 @@ export default function Postcard({
     }
  })
 
- console.log(post)
 
   return (
     <>
