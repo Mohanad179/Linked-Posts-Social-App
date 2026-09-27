@@ -82,7 +82,11 @@ npm run preview
 
 ## Screenshots
 
-[Add 2–3 screenshots here — feed, comments section, and dark mode are good picks]
+<img width="1917" height="1078" alt="image" src="https://github.com/user-attachments/assets/ad603b70-9b5b-4cb9-8a6f-d4e2dffbbe1a" />
+<img width="1917" height="1078" alt="image" src="https://github.com/user-attachments/assets/1962cf20-d2eb-41b8-b4a7-a04709ae7161" />
+<img width="1917" height="1078" alt="image" src="https://github.com/user-attachments/assets/84d00b35-e402-4f6b-8859-9ae1d03470bb" />
+
+
 
 ---
 
