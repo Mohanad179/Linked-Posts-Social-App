@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@plugin "./hero.js";
+@import "flowbite-react/plugin/tailwindcss";
+@source "../node_modules/@heroui/theme/dist/**/*.{js,jsx}";
+@source "../.flowbite-react/class-list.json";
+
+/* dark mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
+.dark{
+    background-color: #121821;
+}
