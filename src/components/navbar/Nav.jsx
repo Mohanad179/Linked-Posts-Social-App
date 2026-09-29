@@ -39,7 +39,7 @@ export default function Nav() {
     <>
       <div className="sticky top-0 z-50">
         <Navbar fluid rounded>
-          <div className="max-w-7xl mx-auto flex w-full items-center justify-between">
+          <div className="max-w-7xl mx-auto flex flex-wrap w-full items-center justify-between">
             <NavbarBrand as={Link} to="/">
               {/* <img src="/favicon.svg" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" />  */}
               <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
@@ -78,7 +78,7 @@ export default function Nav() {
               >
                 {dark ? "☀️" : "🌙"}
               </button>
-              { token && <NavbarToggle /> }
+              { token && <NavbarToggle className="ml-2 border-0 focus:ring-0 hover:bg-transparent dark:hover:bg-transparent" /> }
             </div>
             {token && (
               <NavbarCollapse>
