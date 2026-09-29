@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
 // zod schema for validation
 const signUpSchema = z.object({
@@ -60,6 +62,8 @@ export default function Signup() {
   const [errorMsg, seterrorMsg] = useState(null)
   const [successMsg, setsuccessMsg] = useState(null)
   const [isLoading, setisLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const [showRePassword, setShowRePassword] = useState(false)
   const nav = useNavigate()
 
   async function onSubmit (values){
@@ -100,42 +104,54 @@ export default function Signup() {
         <form  onSubmit={ handleSubmit( onSubmit ) } action="">
           <div className='flex flex-col mb-3'>
             <label htmlFor="name">Full Name:</label>
-            <input {...register("name")} className='border-2 rounded-sm p-0.5 border-gray-300 dark:border-gray-500 outline-none focus:border-blue-500' type="text" id='name' />
+            <input {...register("name")} className='border-2 rounded-sm p-1 border-gray-300 dark:border-gray-500 outline-none focus:border-blue-500' type="text" id='name' />
 
             {errors.name && <p className='bg-red-400 text-white p-1 my-0.5 rounded-sm text-sm'>{errors.name.message}</p>}
           </div>
 
           <div className='flex flex-col mb-3'>
             <label htmlFor="username">Username:</label>
-            <input {...register("username")}  className='border-2 rounded-sm p-0.5 border-gray-300 dark:border-gray-500 outline-none focus:border-blue-500'  type="text" id='username'/>
+            <input {...register("username")}  className='border-2 rounded-sm p-1 border-gray-300 dark:border-gray-500 outline-none focus:border-blue-500'  type="text" id='username'/>
 
             {errors.username && <p className='bg-red-400 text-white p-1 my-0.5 rounded-sm text-sm'>{errors.username.message}</p>}
           </div>
 
           <div className='flex flex-col mb-3'>
             <label htmlFor="email">email:</label>
-            <input {...register("email")} className='border-2 rounded-sm p-0.5 border-gray-300 dark:border-gray-500 outline-none focus:border-blue-500' type="email" id='email' />
+            <input {...register("email")} className='border-2 rounded-sm p-1 border-gray-300 dark:border-gray-500 outline-none focus:border-blue-500' type="email" id='email' />
 
             {errors.email && <p className='bg-red-400 text-white p-1 my-0.5 rounded-sm text-sm'>{errors.email.message}</p>}
           </div>
 
-          <div className='flex flex-col mb-3'>
+          <div className='flex flex-col mb-3 relative'>
             <label htmlFor="password">password:</label>
-            <input {...register("password")} className='border-2 rounded-sm p-0.5 border-gray-300 dark:border-gray-500 outline-none focus:border-blue-500' type="password" id='password' />
+            <input {...register("password")} className='border-2 rounded-sm p-1 border-gray-300 dark:border-gray-500 outline-none focus:border-blue-500' type={ showPassword ? "text" : "password" } id='password' />
+
+            <FontAwesomeIcon 
+              icon={ !showPassword ? faEye : faEyeSlash }
+              onClick={() => setShowPassword(prev => !prev)}
+              className='absolute right-3 top-10 -translate-y-1/2 cursor-pointer text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'
+            />
 
             {errors.password && <p className='bg-red-400 text-white p-1 my-0.5 rounded-sm text-sm'>{errors.password.message}</p>}
           </div>
 
-          <div className='flex flex-col mb-3'>
+          <div className='flex flex-col mb-3 relative'>
             <label htmlFor="rePassword">rePassword:</label>
-            <input {...register("rePassword")} className='border-2 rounded-sm p-0.5 border-gray-300 dark:border-gray-500 outline-none focus:border-blue-500' type="password" id='rePassword' />
+            <input {...register("rePassword")} className='border-2 rounded-sm p-1 border-gray-300 dark:border-gray-500 outline-none focus:border-blue-500' type={showRePassword ? "text" : "password"} id='rePassword' />
+
+            <FontAwesomeIcon 
+              icon={ !showRePassword ? faEye : faEyeSlash }
+              onClick={() => setShowRePassword(prev => !prev)}
+              className='absolute right-3 top-10 -translate-y-1/2 cursor-pointer text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'
+            />
 
             {errors.rePassword && <p className='bg-red-400 text-white p-1 my-0.5 rounded-sm text-sm'>{errors.rePassword.message}</p>}
           </div>
 
           <div className='flex flex-col mb-3'>
             <label htmlFor="dateOfBirth">date of birth:</label>
-            <input {...register("dateOfBirth")} className='border-2 rounded-sm p-0.5 border-gray-300 dark:border-gray-500 outline-none focus:border-blue-500' type="date" id='dateOfBirth' />
+            <input {...register("dateOfBirth")} className='border-2 rounded-sm p-1 border-gray-300 dark:border-gray-500 outline-none focus:border-blue-500' type="date" id='dateOfBirth' />
 
             {errors.dateOfBirth && <p className='bg-red-400 text-white p-1 my-0.5 rounded-sm text-sm'>{errors.dateOfBirth.message}</p>}
           </div>

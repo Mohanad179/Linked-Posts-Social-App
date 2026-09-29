@@ -6,6 +6,8 @@ import * as z from 'zod'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { authContext } from './../authContext/AuthContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 // zod schema for validation
 const loginSchema = z.object({
@@ -30,6 +32,7 @@ export default function Login() {
   const [errorMsg, seterrorMsg] = useState(null)
   const [successMsg, setsuccessMsg] = useState(null)
   const [isLoading, setisLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
   const nav = useNavigate()
 
   async function onSubmit (values){
@@ -77,14 +80,20 @@ export default function Login() {
         <form  onSubmit={ handleSubmit( onSubmit ) } action="">
           <div className='flex flex-col mb-3'>
             <label htmlFor="email">email:</label>
-            <input {...register("email")} className='border-2 rounded-sm p-0.5 border-gray-300 dark:border-gray-500 outline-none focus:border-blue-500' type="email" id='email' />
+            <input {...register("email")} className='border-2 rounded-sm p-1 border-gray-300 dark:border-gray-500 outline-none focus:border-blue-500' type="email" id='email' />
 
             {errors.email && <p className='bg-red-400 text-white p-1 my-0.5 rounded-sm text-sm'>{errors.email.message}</p>}
           </div>
 
-          <div className='flex flex-col mb-3'>
+          <div className='flex flex-col mb-3 relative'>
             <label htmlFor="password">password:</label>
-            <input {...register("password")} className='border-2 rounded-sm p-0.5 border-gray-300 dark:border-gray-500 outline-none focus:border-blue-500' type="password" id='password' />
+            <input {...register("password")} className='border-2 rounded-sm p-1 border-gray-300 dark:border-gray-500 outline-none focus:border-blue-500' type={ showPassword ? "text" : "password" } id='password' />
+
+            <FontAwesomeIcon
+              onClick={ () => setShowPassword(prev => !prev) } 
+              className='absolute right-3 top-10 -translate-y-1/2 cursor-pointer text-gray-400 hover:text-gray-600 dark:hover:text-gray-300' 
+              icon={ !showPassword ? faEye : faEyeSlash } 
+              size='sm'/>
 
             {errors.password && <p className='bg-red-400 text-white p-1 my-0.5 rounded-sm text-sm'>{errors.password.message}</p>}
           </div>
