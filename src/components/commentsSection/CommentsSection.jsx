@@ -157,7 +157,7 @@ export default function CommentSection({ postId, token }) {
                 <div className="absolute right-5">
                   <Dropdown size="sm">
                     <DropdownTrigger>
-                      <Button variant="bordered">
+                      <Button variant="light">
                         <FontAwesomeIcon icon={faEllipsis}/>
                       </Button>
                     </DropdownTrigger>

@@ -49,11 +49,11 @@ export default function UserProfileModal({ userId, isOpen, onClose, token, isFol
                     <div className="flex gap-12 mt-2">
                         <div className="text-center">
                             <span className="font-bold text-2xl block">{profile.following.length}</span>
-                            <span className="text-sm text-gray-500">Following</span>
+                            <span className="text-sm text-gray-500 cursor-pointer hover:underline">Following</span>
                         </div>
                         <div className="text-center">
                             <span className="font-bold text-2xl block">{profile.followers.length}</span>
-                            <span className="text-sm text-gray-500">Followers</span>
+                            <span className="text-sm text-gray-500 cursor-pointer hover:underline">Followers</span>
                         </div>
                     </div>
                     <span>
