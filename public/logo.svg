@@ -1,0 +1,14 @@
+<svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="linkedPostsGrad" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#6366F1"/>
+    </linearGradient>
+  </defs>
+  <!-- Base Container / Glowing Backdrop -->
+  <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#linkedPostsGrad)" />
+  
+  <!-- Interlocking Posts & Link Symbol -->
+  <path d="M16 18C16 15.7909 17.7909 14 20 14H28C30.2091 14 32 15.7909 32 18V22C32 24.2091 30.2091 26 28 26H25L21 30V26H20C17.7909 26 16 24.2091 16 22V18Z" fill="white" fill-opacity="0.95"/>
+  <path d="M20 22H28C30.2091 22 32 23.7909 32 26V30C32 32.2091 30.2091 34 28 34H27V37L23 34H20C17.7909 34 16 32.2091 16 30V26C16 23.7909 17.7909 22 20 22Z" fill="white" fill-opacity="0.5"/>
+</svg>
