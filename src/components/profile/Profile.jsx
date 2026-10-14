@@ -200,7 +200,7 @@ export default function Profile() {
   return (
     <>
       <Helmet>
-        <title>Profile</title>
+        <title>Profile | LinkedPosts</title>
       </Helmet>
 
       <div className="profile-container relative max-w-xl mx-auto my-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700/50 p-6 sm:p-8">

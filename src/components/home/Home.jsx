@@ -79,7 +79,7 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Home Feed</title>
+        <title>Home Feed | LinkedPosts</title>
       </Helmet>
 
       <CreatePost token={token} />
